@@ -1,0 +1,111 @@
+Important Notes 
+---------------
+
+	- Instance variables : If you are creating the variables inside the class and they are going to be non-static (static keyword should not be used).
+
+	Inside class {
+	Non-static variables -> Instance Variables
+	Static Variables -> Class Variables
+	}
+
+	- Instance variables are always marked with private keyword. (until unless specified)
+
+	- String name; -> name(reference variable) is of type string which is non-primitive data type so default value of name is null.
+	 int age; -> age is of type int which is primitive data type so default value of age is 0.
+	String studentId -> null
+	List<String> courses; - > null
+	
+	Default value{
+	Primitive Data Type : 0
+	Non-primitive Data Type : null
+	}
+
+	- Instance variables needs to be initialized inside the constructor only.
+
+	List<String> courses; -> courses is an reference variable, List is an interface (we don't create objects of interfaces).
+	List interface is implemented by ArrayList class. Create an object of ArrayList inside the student constructor.
+	
+	- Student s1; -> is s1 an Object ???? -> NO
+	 s1 is a reference variable which stores the unique identification/ hash code of the object created in a heap memory.
+
+	- Whenever we create an object, 3 things are bound to happen.
+		a. Class will be loaded in the memory.
+		b. Instance variable will be created.
+		c. Constructor will be called.
+	
+	Objects will be created in Heap memory. (using new keyword)
+
+	- We implement -> toString() method to get one line description of the state/value of the instance variable.
+	
+	- In order to execute a program java needs an entry point i.e. main method. ->java will execute the main class.
+	  public static void main(String[] args){} 
+	(String [] args)->Runtime Arguments
+	
+	- Any method execution happens inside stack.
+	
+	- Variable created inside the method are called Local Variable which are created inside stack memory. Local variables are never initialized with default values. 
+	
+	-  super() keyword is used to call parent class constructor. Here in our case there is no parent class of student. If parent class is not specified, then implicit parent (super class) of all the classes is going to be object. So, super() will call the object class constructor which is an empty constructor.
+
+	-  this keyword : The purpose of this keyword is to differentiate local variables with instance variables when they have same name. In our code, we have local variables (created inside stack) and we have instance variables (created inside heap) and they both have same name. this keyword will tell that we are referring to instance variable.
+	
+	- Once constructor jobs done, it will be removed/popped out from the Stack memory.
+	
+	-  For most of the instance variables that we are using, we need to do validation checks.
+	
+	- In our program, we need to do validation for name and studentID. How to check whether a string is of a certain format or not ? -> Using "Regular Expressions" ->Regex.
+	- We will be using Regex inside our validation methods for name and studentId.
+	
+	- String nameRegex="^[a-zA-Z\\s]"; 
+	-> ^ tells that string needs to start with an alphabet.
+	-> [a-zA-Z] : upper/lowercase alphabets are allowed.
+	-> \\s : space is allowed.
+	-> + : indicates combination.
+	-> $ : end of string.
+	
+	- We have Pattern class which belongs to java.util.regex. It consists one method called compile().
+	-  contains() method is used to check if a certain object is part of Arraylist.
+	
+	- ArrayList is non-idempotent in nature. We can have duplicate elements/values in our ArrayList.
+	- Whenever you are going to call the add method, make sure whether the particular element is present in the list. If list does not contain that particular element then only we can add it.
+	- List<Student> studentList = new ArrayList<Student>(); -> created a list of student
+	- Adding all the object references to the list.
+	 studentList.add(s1);
+	 studentList.add(s2);
+	 studentList.add(s3);
+	-  s1,s2,s3 are the object references which represent/stores the hash code of the objects created in the heap memory.
+	- Our array list will store student kind of data. So, technically each of our array memory locations will be storing the reference not data.
+	- Each memory location in our array is a reference variable as they are not storing the object but their references.
+	- Local variables which are created in a method cannot be accessible outside the method.
+
+	- We have declared or list at class level
+	 private static List<Student> studentList; -> static variables can be accessed in static methods.
+	-  stream() is techniacally applicable on collections. Whenever we are having multiple set of values, and we want to perform some kind of operations (search/find studentId in our case). One by one data will go to the stream and then we will try to filter it on the basis of studentid. 
+	Public static void findStudentById(String studentId)
+	{
+	studentList.stream().filter(x->x.getStudentId().equalsIgnoreCase(studentId)).findFirst().
+	orElseThrow(()-> new RuntimeException("No Data found!!!"));
+	}
+	- Exceptions can be handled through either try/catch block or throws keyword.
+	- In reality, the best way to handle the exception is try/catch.
+	- For custom sorting we will use comaprator.
+
+	- If we have multiple objects (here in our case is student name - Kajal, Ajinkya, Uday and Ritu). We have to create a functionality, that based on that when we call that method (.sort()) then it will print the information of objects in sorted order. For example if our comparator works on the basis of name it will print in alphabetical order i.e. Ajinkya, Kajal, Ritu and Uday. Comparator job is to help us to sort something on the basis of our instance variable. 
+	- Lambda expressions are used to make code little concise. Reduce the boiler plate code.
+
+	- For reading input from the terminal we can use Scanner class which belongs to java.util package like all other classes - Arraylist, Collections, etc. Comparator, List (Interface).
+	- Scanner class has lot of methods. If you want to read input in string format - .next() methods can use. 
+	- To read integer values from the console we can use - .nextInt() method.
+	- Whenever you want to exit from the loop, we can use break keyword.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
